@@ -1,0 +1,7 @@
+
+services:
+  dbt_dev:
+    build: .
+    volumes:
+      - .:/app
+    container_name: fintech_audit_container

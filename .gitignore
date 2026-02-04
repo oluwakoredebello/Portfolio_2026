@@ -1,0 +1,30 @@
+# Ignore the Python Virtual Environment and all sub-folders
+dbt_env/
+**/bin/
+**/lib/
+**/include/
+pyvenv.cfg
+
+# Ignore the heavy Data & DB files
+*.duckdb
+**/*.duckdb
+fintech_audit/seeds/*.csv
+fintech_audit/analyses/
+fintech_audit/macros/
+fintech_audit/seeds/
+fintech_audit/snapshots/
+fintech_audit/target/
+fintech_audit/tests/
+fintech_audit/dbt_packages/
+# Ignore dbt logs and compiled code
+logs/
+
+# System files
+.DS_Store
+
+# Ignore the raw data CSV
+*.csv
+fintech_audit/seeds/*.csv
+
+# Ignore Python environment and cache
+__pycache__/
