@@ -42,9 +42,4 @@ for i in range(1_500_000):
     data.append(item)
 
 df = pd.DataFrame(data)
-df.to_csv("./fintech_audit/seeds/raw_subscriptions_.csv", index = False)
-
-
-#rename status weights to just weights
-#keep the current weights for the status choice, 
-#but the weights will have to change to an an increased 30% when the random choice has randomly chosen "Legacy_Internal-System"  
+df.to_csv("./fintech_audit/seeds/raw_subscriptions.csv", index = False) 

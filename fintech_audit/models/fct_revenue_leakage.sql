@@ -3,7 +3,7 @@ with staging as (
 )
 
 select
-    plan,
+    plan_name,
     count(user_id) as total_customers,
     sum(potential_revenue) as expected_revenue,
     sum(potential_revenue * is_leaked_revenue_flag) as total_dollars_leaked,
