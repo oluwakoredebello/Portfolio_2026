@@ -11,7 +11,7 @@ payment_gateways = ['Paypal', 'Stripe', 'Legacy_Internal_System', 'ApplePay', 'S
 status_options = ['Active', 'Failed', 'Cancelled']
 
 legacy_weights = [0.30, 0.60, 0.10] # legacy weights to increase chance of failed subs if gateway equals legacy system
-cancellation_weights = [0.20, 0.30, 0.50]
+cancellation_weights = [0.20, 0.30, 0.50] #increase chance of cancellation
 healthy_weights = [0.80, 0.10, 0.10] # healthy weights for other times the payments are not legacy system
 
 # creating a randomized large-volume datase, utilizing Faker and random modules
