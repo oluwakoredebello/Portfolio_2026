@@ -8,7 +8,8 @@ cleaned_data as (
         trim(plan) as plan_name,
         trim(payment_status) as payment_status,
         trim(payment_gateway) as payment_gateway,
-        days_since_login as days_since_last_login
+        days_since_login as days_since_last_login,
+        tenure as tenure
     from raw_data
 )
 
@@ -24,6 +25,7 @@ select
     payment_gateway,
     payment_status,
     days_since_last_login,
+    tenure,
     case 
         when lower(payment_status) = 'failed' then 1 
         else 0 
