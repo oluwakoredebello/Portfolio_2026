@@ -6,37 +6,71 @@ import numpy as np
 fake = Faker()
 data = []
 
-plan_choice = ['Basic', 'Pro', 'Premium']
-payment_gateways = ['Paypal', 'Stripe', 'Legacy_Internal_System', 'ApplePay', 'SamsungPay']
-status_options = ['Active', 'Failed', 'Cancelled']
+plan_options = ['Basic', 'Pro', 'Premium'] #creating plan_option sbased on company product offerings
+plan_weights = [0.60, 0.30, 0.10]
 
-legacy_weights = [0.30, 0.60, 0.10] # legacy weights to increase chance of failed subs if gateway equals legacy system
-cancellation_weights = [0.20, 0.30, 0.50] #increase chance of cancellation
-healthy_weights = [0.80, 0.10, 0.10] # healthy weights for other times the payments are not legacy system
+
+status_options = ['Active', 'Failed', 'Cancelled'] #setting up customer statuses
+failed_weights = [0.30, 0.60, 0.10]
+cancellation_weights = [0.20, 0.30, 0.50]
+healthy_weights = [0.80, 0.10, 0.10]
+
+gateway_options = ['Paypal', 'Stripe', 'Legacy_Internal_System', 'ApplePay', 'SamsungPay'] #Legacy Systems was developed internally when 
+legacy_weights = [0.05, 0.05, 0.85, 0.025, 0.025]
+growth_weights = [0.05, 0.05, 0.60, 0.20, 0.10]
+modern_weights = [0.10, 0.10, 0.05, 0.40, 0.35]
+
 
 # creating a randomized large-volume datase, utilizing Faker and random modules
 for i in range(1_500_000):
 
-    current_plan =random.choice(plan_choice)
-    gateway_choice = random.choice(payment_gateways)
+    years_with_the_firm = random.randint(0, 25)
     login_gap_days = random.randint(0, 90)
+    plan_choice = random.choices(plan_options, weights = plan_weights)[0]
 
-    if gateway_choice == 'Legacy_Internal_System': #if the user pays through the legacy system, increase the probability of Failure
-        status_choice = random.choices(status_options, weights = legacy_weights)[0]
+    if years_with_the_firm > 15:
+        gateway_choice = random.choices(gateway_options, weights = legacy_weights)[0]
+        if gateway_choice == 'Legacy_Internal_System':
+            status_choice = random.choices(status_options, weights = failed_weights)[0]
 
-    elif login_gap_days > 30: #its also possible that a user can be on the legacy system, and also cancelled because of increased log in days
-        status_choice = random.choices(status_options, weights = cancellation_weights)[0]
+        elif login_gap_days > 30:
+            status_choice = random.choices(status_options, weights = cancellation_weights)[0]
 
-    else:
-        status_choice = random.choices(status_options, weights = healthy_weights)[0]
+        else:
+            status_choice = random.choices(status_options, weights = healthy_weights)[0]
+
+    elif years_with_the_firm <= 5:
+        gateway_choice = random.choices(gateway_options, weights = modern_weights)[0] 
+        if gateway_choice == 'Legacy_Internal_System':
+            status_choice = random.choices(status_options, weights = failed_weights)[0]
+
+        elif login_gap_days > 30:
+            status_choice = random.choices(status_options, weights = cancellation_weights)[0]
+
+        else:
+            status_choice = random.choices(status_options, weights = healthy_weights)[0]
+    
+    else: 
+        gateway_choice = random.choices(gateway_options, weights = growth_weights)[0] 
+        if gateway_choice == 'Legacy_Internal_System':
+            status_choice = random.choices(status_options, weights = failed_weights)[0]
+
+        elif login_gap_days > 30:
+            status_choice = random.choices(status_options, weights = cancellation_weights)[0]
+
+        else:
+            status_choice = random.choices(status_options, weights = healthy_weights)[0]
+
+
 
     item = {
         'user_id': i,
         'user_name': fake.name(),
-        'plan': current_plan,
+        'plan': plan_choice,
         'payment_gateway': gateway_choice,
         'payment_status': status_choice,
-        'days_since_login': login_gap_days   
+        'days_since_login': login_gap_days,
+        'tenure': years_with_the_firm 
     }
 
     data.append(item)
