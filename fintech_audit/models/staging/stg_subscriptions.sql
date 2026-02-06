@@ -19,9 +19,9 @@ select
     user_id,
     plan_name as plan_name,
     case 
-        when plan_name = 'Basic' then 15.99
-        when plan_name = 'Pro' then 19.99
-        when plan_name = 'Premium' then 29.99
+        when lower(plan_name) = 'basic' then 15.99
+        when lower(plan_name) = 'pro' then 19.99
+        when lower(plan_name) = 'premium' then 29.99
         else 0
     end as potential_revenue,
     payment_gateway,

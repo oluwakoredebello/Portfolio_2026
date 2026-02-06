@@ -9,12 +9,12 @@ select
 
     count(user_id) as total_customers,
     sum(case
-            when payment_status = 'Cancelled' then 1
+            when lowwer(payment_status) = 'cancelled' then 1
             else 0
         end) as total_cancellations,
     round(
         (sum(case
-                when payment_status = 'Cancelled' then 1
+                when lower(payment_status) = 'cancelled' then 1
                 else 0
             end) * 100.0) / nullif(count(user_id), 0), 2
     ) as churn_rate_pct
