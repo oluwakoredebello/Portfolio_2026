@@ -6,16 +6,18 @@ import numpy as np
 fake = Faker()
 data = []
 
-plan_options = ['Basic', 'Pro', 'Premium'] #creating plan_option sbased on company product offerings
+#creating plan options with realistic weight distribution
+plan_options = ['Basic', 'Pro', 'Premium']
 plan_weights = [0.60, 0.30, 0.10]
 
-
-status_options = ['Active', 'Failed', 'Cancelled'] #setting up customer statuses
+#creating status options with applicable weights 
+status_options = ['Active', 'Failed', 'Cancelled']
 failed_weights = [0.30, 0.60, 0.10]
 cancellation_weights = [0.20, 0.30, 0.50]
 healthy_weights = [0.80, 0.10, 0.10]
 
-gateway_options = ['Paypal', 'Stripe', 'Legacy_Internal_System', 'ApplePay', 'SamsungPay'] #Legacy Systems was developed internally when 
+#Payment systems and gateways: Legacy System was developed internally when Lumiere Financiers was incorporated
+gateway_options = ['Paypal', 'Stripe', 'Legacy_Internal_System', 'ApplePay', 'SamsungPay']
 legacy_weights = [0.05, 0.05, 0.85, 0.025, 0.025]
 growth_weights = [0.05, 0.05, 0.60, 0.20, 0.10]
 modern_weights = [0.10, 0.10, 0.05, 0.40, 0.35]

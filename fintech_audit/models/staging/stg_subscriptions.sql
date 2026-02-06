@@ -13,6 +13,8 @@ cleaned_data as (
     from raw_data
 )
 
+--- setting up staging table with transformations and calculations for downstream models
+
 select
     user_id,
     plan_name as plan_name,

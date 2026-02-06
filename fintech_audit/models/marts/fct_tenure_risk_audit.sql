@@ -2,6 +2,7 @@ with staging as (
     select * from {{ ref('stg_subscriptions') }}
 )
 
+--- 
 select
     tenure,
     count(user_id) as total_customers,
