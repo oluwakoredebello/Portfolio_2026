@@ -3,13 +3,14 @@
 
 ---
 ## The Business Case
-* **Business Context** Lumiere Financiers is a legacy wealth management firm founded in the early 2000s. After decades of sustained growth, the firm's infrastructure evolved into a complex hybrid of internal databases and modern API-driven payment gateways. This fragmentation led to synchronization errors across Lumiere's three core service tiers: Basic (Retail), Pro (Wealth), and Premium (Private Client). Facing a projected $10M revenue leakage, Lumiere sought a data-driven strategy to justify full Cloud Migration.
+* **Business Context** 
+Lumiere Financiers is a legacy wealth management firm founded in the early 2000s. After decades of sustained growth, the firm's infrastructure evolved into a complex hybrid of internal databases and modern API-driven payment gateways. This fragmentation led to synchronization errors across Lumiere's three core service tiers: Basic (Retail), Pro (Wealth), and Premium (Private Client). Facing a projected $10M revenue leakage, Lumiere sought a data-driven strategy to justify full Cloud Migration.
 
-* Product Scope: Managed Tiers
 > The pipeline reconciles transaction data across three wealth management offerings:
-* Basic: Entry-level automated portfolio tracking ($15.99/mo)
-* Pro: Active Management with advisor access ($19.99/mo)
-* Premium: Full-service Private Client Management ($29.99/mo)
+* Product Scope: Managed Tiers
+1.  Basic: Entry-level automated portfolio tracking ($15.99/mo)
+2.  Pro: Active Management with advisor access ($19.99/mo)
+3.  Premium: Full-service Private Client Management ($29.99/mo)
 
 * **Technical Challenge** Handling 1.5M+ records with inconsistent data types and integrity issues across multiple systems
 
