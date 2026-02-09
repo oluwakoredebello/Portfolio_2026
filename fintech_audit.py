@@ -16,7 +16,7 @@ failed_weights = [0.30, 0.60, 0.10]
 cancellation_weights = [0.20, 0.30, 0.50]
 healthy_weights = [0.80, 0.10, 0.10]
 
-#Payment systems and gateways: Legacy System was developed internally when Lumiere Financiers was incorporated
+#Payment systems and gateways: Legacy System was developed internally when Lumiere Financiers was Incorporated
 gateway_options = ['Paypal', 'Stripe', 'Legacy_Internal_System', 'ApplePay', 'SamsungPay']
 legacy_weights = [0.05, 0.05, 0.85, 0.025, 0.025]
 growth_weights = [0.05, 0.05, 0.60, 0.20, 0.10]
@@ -30,7 +30,7 @@ for i in range(1_500_000):
     login_gap_days = random.randint(0, 90)
     plan_choice = random.choices(plan_options, weights = plan_weights)[0]
 
-    if years_with_the_firm > 15:
+    if years_with_the_firm > 15: #simulating increased chance for a consumer to be assigned to Legacy Payment Gateway if tenure is higher than 15
         gateway_choice = random.choices(gateway_options, weights = legacy_weights)[0]
         if gateway_choice == 'Legacy_Internal_System':
             status_choice = random.choices(status_options, weights = failed_weights)[0]
@@ -41,7 +41,7 @@ for i in range(1_500_000):
         else:
             status_choice = random.choices(status_options, weights = healthy_weights)[0]
 
-    elif years_with_the_firm <= 5:
+    elif years_with_the_firm <= 5: #simulating increased chance for a consumer to be assigned to Modern Payment Gateways if tenure is less than 5
         gateway_choice = random.choices(gateway_options, weights = modern_weights)[0] 
         if gateway_choice == 'Legacy_Internal_System':
             status_choice = random.choices(status_options, weights = failed_weights)[0]
@@ -52,7 +52,7 @@ for i in range(1_500_000):
         else:
             status_choice = random.choices(status_options, weights = healthy_weights)[0]
     
-    else: 
+    else: #simulating moderate chances for a consumer to be assigned to Legacy and Modern Gateways
         gateway_choice = random.choices(gateway_options, weights = growth_weights)[0] 
         if gateway_choice == 'Legacy_Internal_System':
             status_choice = random.choices(status_options, weights = failed_weights)[0]
@@ -64,7 +64,7 @@ for i in range(1_500_000):
             status_choice = random.choices(status_options, weights = healthy_weights)[0]
 
 
-
+    
     item = {
         'user_id': i,
         'user_name': fake.name(),

@@ -2,7 +2,7 @@ with staging as (
     select * from {{ ref('stg_subscriptions') }}
 )
 
----
+---Grouping leakage by each service option
 select
     plan_name,
     count(user_id) as total_customers,

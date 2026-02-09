@@ -1,4 +1,7 @@
 # Project Title: Lumiere Financiers Revenue Integrity Suite
+![Build Status](https://img.shields.io/badge/Status-Active_Development-green)
+![Tech](https://img.shields.io/badge/Stack-Python%20%7C%20DuckDB%20%7C%20dbt-blue)
+
 > An automated data engineering pipeline designed to identify, quantify, and reconcile revenue leakages across legacy and modern payment gateways
 
 ---

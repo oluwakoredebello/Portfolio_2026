@@ -2,6 +2,7 @@ with staging as (
     select * from {{ ref('stg_subscriptions') }}
 )
 
+--- payment gateways grouped in order of leakage pct
 select 
     payment_gateway,
     count(user_id) as total_customers,

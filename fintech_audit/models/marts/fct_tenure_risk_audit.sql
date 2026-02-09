@@ -2,7 +2,7 @@ with staging as (
     select * from {{ ref('stg_subscriptions') }}
 )
 
---- 
+---visualizing increased failure rates for longer tenured customers, attributed to Legacy Systems
 select
     tenure,
     count(user_id) as total_customers,

@@ -2,6 +2,7 @@ with raw_data as (
     select * from {{ ref('raw_subscriptions') }}
 ),
 
+--- cleaning individual columns
 cleaned_data as (
     select
         user_id,
@@ -14,7 +15,6 @@ cleaned_data as (
 )
 
 --- setting up staging table with transformations and calculations for downstream models
-
 select
     user_id,
     plan_name as plan_name,

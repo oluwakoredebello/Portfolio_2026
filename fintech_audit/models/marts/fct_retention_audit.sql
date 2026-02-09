@@ -3,13 +3,11 @@ with staging as (
 )
 
 -- are people with high inactivity actually more likely to be 'Cancelled' then 'Active?
-
 select
     is_inactive_user_flag,
-
     count(user_id) as total_customers,
     sum(case
-            when lowwer(payment_status) = 'cancelled' then 1
+            when lower(payment_status) = 'cancelled' then 1
             else 0
         end) as total_cancellations,
     round(
