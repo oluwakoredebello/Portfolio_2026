@@ -13,7 +13,10 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['basic', 'pro', 'premium'] 
+              values:
+                - basic
+                - pro
+                - premium
 
       - name: potential_revenue
         description: "{{ doc('subscriptions') }}"
@@ -25,14 +28,22 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ['paypal', 'stripe', 'legacy_internal_system', 'applepay', 'samsungpay']
+              values: 
+                - paypal
+                - stripe
+                - legacy_internal_system
+                - applepay
+                - samsungpay
 
       - name: payment_status
         description: "{{ doc('subscriptions') }}"
         data_tests: 
           - not_null
           - accepted_values:
-              values: ['active', 'cancelled', 'failed']
+              values:
+                - active
+                - cancelled
+                - failed
 
       - name: days_since_last_login
         description: Customers behavior, login activity
