@@ -1,7 +1,19 @@
 
 services:
-  dbt_dev:
+  ingestion:
     build: .
+    container_name: fintech_ingestion
     volumes:
       - .:/app
-    container_name: fintech_audit_container
+    command: python fintech_audit.py
+
+  dbt_transform:
+    build: .
+    container_name: fintech_dbt
+    volumes:
+      - .:/app
+    depends_on:
+      ingestion:
+        condition: service_completed_successfully
+    command: >
+      bash -c "dbt build --project-dir fintech_audit --profiles-dir fintech_audit"

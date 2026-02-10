@@ -1,14 +1,14 @@
 with raw_data as (
-    select * from {{ ref('raw_subscriptions') }}
+    select * from {{ source('external_source', 'raw_subscriptions') }}
 ),
 
 --- cleaning individual columns
 cleaned_data as (
     select
         user_id,
-        trim(plan) as plan_name,
-        trim(payment_status) as payment_status,
-        trim(payment_gateway) as payment_gateway,
+        lower(trim(plan)) as plan_name,
+        lower(trim(payment_status)) as payment_status,
+        lower(trim(payment_gateway)) as payment_gateway,
         days_since_login as days_since_last_login,
         tenure as tenure
     from raw_data
@@ -19,9 +19,9 @@ select
     user_id,
     plan_name as plan_name,
     case 
-        when lower(plan_name) = 'basic' then 15.99
-        when lower(plan_name) = 'pro' then 19.99
-        when lower(plan_name) = 'premium' then 29.99
+        when plan_name = 'basic' then 15.99
+        when plan_name = 'pro' then 19.99
+        when plan_name = 'premium' then 29.99
         else 0
     end as potential_revenue,
     payment_gateway,

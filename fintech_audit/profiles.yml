@@ -1,0 +1,6 @@
+fintech_audit:
+  outputs:
+    dev:
+      type: duckdb
+      path: fintech_audit/dev.duckdb  
+  target: dev

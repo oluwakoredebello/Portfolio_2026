@@ -1,0 +1,45 @@
+models:
+  - name: stg_subscriptions #staging model name
+    description: The grain of this table is one unique customer per row
+    columns:
+      - name: user_id 
+        description: This is the Primary Key for dataset
+        data_tests:
+          - unique #checks that all values within the column are unique
+          - not_null #checks that all values within the columns are not null
+
+      - name: plan_name
+        description: Business offering plan names ['Basic', 'Pro', 'Premium']
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['basic', 'pro', 'premium'] 
+
+      - name: potential_revenue
+        description: "{{ doc('subscriptions') }}"
+        data_tests:
+          - not_null
+
+      - name: payment_gateway
+        description: Business gateways utilized by Lumiere Financiers ['Paypal', 'Stripe', 'Legacy_Internal_System', 'ApplePay', 'SamsungPay']
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['paypal', 'stripe', 'legacy_internal_system', 'applepay', 'samsungpay']
+
+      - name: payment_status
+        description: "{{ doc('subscriptions') }}"
+        data_tests: 
+          - not_null
+          - accepted_values:
+              values: ['active', 'cancelled', 'failed']
+
+      - name: days_since_last_login
+        description: Customers behavior, login activity
+        data_tests: 
+          - not_null
+
+      - name: tenure
+        description: Length of Customers loyalty
+        data_tests:
+          - not_null
